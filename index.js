@@ -19,12 +19,15 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
+const { getTypes } = require('./src/controllers/types_of_art');
+const { getApiToDb } = require('./src/controllers/artworks');
+// const { artworks } = require('./src/controllers/artworks.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(5040, () => {
     console.log('o|O_O|o robot Σωκράτης listening at 5040'); // eslint-disable-line no-console
   });
-  // getData(); <<<--- para iniciar la base de datos
+  getTypes(); // <<<--- para iniciar la base de datos
+  getApiToDb(); // <<<--- para iniciar la base de datos
 });
