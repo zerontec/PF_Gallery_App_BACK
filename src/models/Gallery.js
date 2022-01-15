@@ -1,3 +1,4 @@
+
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
@@ -40,3 +41,4 @@ module.exports = (sequelize) => {
     }
   });
 };
+

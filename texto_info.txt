@@ -1,0 +1,24 @@
+Roles
+
+In Gallery
+Administrador ---> asignar o eliminar propietarios
+Propietario ---> crear galerías, publicar, vender comprar
+Vendedor ---> vender y comprar
+
+Out Gallery
+Comprador ---> comprar
+Vendedor ---> vender
+
+Gallery
+id
+name
+dirección
+dueño
+tel
+contact pag face
+contact pag instagram
+stock obras ---> x relación ---> 100 obras base iniciamos
+typos de obras ---> x relación ---> se levanta al levantar servidor
+numero de cuenta
+
+Carrito Compras ---> pendiente
