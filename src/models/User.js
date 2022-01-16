@@ -12,18 +12,18 @@ sequelize.define('user', {
         allowNull: false,
       },
 
-      userName:{
+      username:{
           type: DataTypes.STRING,
           allowNull:false,
           defaultValue: '',
           unique:true
       },
-      firtsName:{
+      firtsname:{
 
         type:DataTypes.STRING,
         allowNull:false
       },
-      lastName:{
+      lastname:{
 
         type:DataTypes.STRING,
         allowNull:false
@@ -41,16 +41,14 @@ sequelize.define('user', {
 
       },
       password:{
-          type:DataTypes.STRING
+          type:DataTypes.STRING,
+          allowNull: false
       },
-      accountType:{
+      accountype:{
 
         type:DataTypes.STRING
 
       }
-
-
-
 
 })
 
