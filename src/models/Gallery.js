@@ -1,26 +1,27 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define("gallery", {
+  sequelize.define('gallery', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      allowNull: false,
     },
-    nameGallery: {
+    galleryName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
 
-    addresGallery: {
+    galleryAddress: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
 
-    ownGallery: {
+    galleryOwner: {
       type: DataTypes.STRING,
     },
-    telf: {
+    phone: {
       type: DataTypes.NUMBER,
       allowNull: false,
     },
@@ -29,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
 
-    imageGallery:{
+    galleryImage:{
 
         type:DataTypes.STRING,
         
@@ -37,6 +38,7 @@ module.exports = (sequelize) => {
     stock:{
 
         type:DataTypes.INTEGER,
-    }
+    },
+
   });
 };
