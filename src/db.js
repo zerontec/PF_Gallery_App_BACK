@@ -34,7 +34,7 @@ const { Gallery, User, Artwork, Type } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Gallery.hasMany(User);
+// Gallery.hasMany(User); 
 Artwork.belongsToMany(Type, {through: 'artwork_type_of_art'});
 Type.belongsToMany(Artwork, {through: 'artwork_type_of_art'});
 

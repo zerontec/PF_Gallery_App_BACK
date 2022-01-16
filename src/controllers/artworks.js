@@ -11,7 +11,7 @@ async function getApiToDb(req, res, next) {
         } else {
         let apiArtwork = await axios.get(API_URL);
         apiArtwork = apiArtwork.data;
-        var results = apiArtwork.data.slice(0, 199).map((art) => {
+        var results = apiArtwork.data.slice(0, 129).map((art) => {
             if(art.images !== null){
                 var image = art.images.web.url;
             }else{
@@ -46,21 +46,22 @@ async function getApiToDb(req, res, next) {
     } catch (error) {
         next(error);
     }
-};
+}; 
    
 
 
 async function getAllArtwors(req, res, next) {
     try {
         const foundArtworkDb = await Artwork.findAll();
+        console.log("lengyh es____",foundArtworkDb.length)
         if (foundArtworkDb.length !== 0) {
             console.log("entramos a las obras de arte por data base")
-            return foundArtworkDb;
+            res.json(foundArtworkDb);
         } else {
         let apiArtwork = await axios.get(API_URL);
         apiArtwork = apiArtwork.data;
         // console.log('apiArtwork es _______ ', apiArtwork);
-        apiArtwork = apiArtwork.data.slice(0, 199).map((art) => {
+        apiArtwork = apiArtwork.data.slice(0, 129).map((art) => {
             if(art.images !== null){
                 var image = art.images.web.url;
             }else{
@@ -95,7 +96,7 @@ async function getAllArtwors(req, res, next) {
         }
         res.json([...formatedArtworks, ...apiArtwork]);
     }
-        //res.json(apiArtwork)
+        // res.json(apiArtwork)
     } catch (error) {
         next(error);
     }
