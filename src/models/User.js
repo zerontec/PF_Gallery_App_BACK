@@ -11,3 +11,9 @@ module.exports = (sequelize) => {
             timestamps: false
         });
 };
+
+
+// telf: {
+//     type: DataTypes.NUMBER, //---> NUMBER determina un error en la base de datos
+//     allowNull: false,
+//   },
