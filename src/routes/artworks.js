@@ -1,13 +1,13 @@
 const { Router } = require("express");
 const router = Router();
 const {   
-    getAllArtwors,
+    getApiToDb,
     
 } = require("../controllers/artworks.js");
 
   
 
-router.get('/', getAllArtwors);
+router.get('/', getApiToDb);
 
 
 module.exports = router;

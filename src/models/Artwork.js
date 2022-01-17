@@ -12,26 +12,30 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // creation_date: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
-        // current_location: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
-        // culture: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        //     allowNull: false,
-        // },
-        // technique: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
-        // collection: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
+        creation_date: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        current_location: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        culture: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
+        },
+        technique: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        collection: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
         // dimensions_height: {
         //     type: DataTypes.INTEGER,
         // },
@@ -105,3 +109,8 @@ module.exports = (sequelize) => {
 //             creators_biography: art.creators.biography,
 //             creators_birth_year: art.creators.birth_year,
 //             creators_death_year: art.creators.death_year,
+
+
+
+
+// set client_encoding to UTF8;

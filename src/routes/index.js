@@ -10,7 +10,7 @@ const router = Router();
 router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
 router.get('/', (req, res) => {
-    res.status(200).send('--->>> go to /home please <<<---');
+    res.status(200).send('> > > > > > ||| . . . go to /home please . ||| > > > > >');
 });
 
 
