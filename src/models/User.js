@@ -1,55 +1,35 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  // defino el modelo
+  sequelize.define("user", {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
 
+    /*  lastName:{
+      type:DataTypes.INTEGER
+    }, */
 
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
 
-module.exports= (sequelize) => {
-
-sequelize.define('user', {
-
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-      },
-
-      username:{
-          type: DataTypes.STRING,
-          allowNull:false,
-          defaultValue: '',
-          unique:true
-      },
-      firtsname:{
-
-        type:DataTypes.STRING,
-        allowNull:false
-      },
-      lastname:{
-
-        type:DataTypes.STRING,
-        allowNull:false
-
-      },
-
-      address:{
-          type:DataTypes.STRING
-      },
-      email:{
-
-        type:DataTypes.STRING,
-        unique:true,
-       
-
-      },
-      password:{
-          type:DataTypes.STRING,
-          allowNull: false
-      },
-      accountype:{
-
-        type:DataTypes.STRING
-
-      }
-
-})
-
-}
+    image: {
+      type: DataTypes.STRING,
+    },
+  });
+};
