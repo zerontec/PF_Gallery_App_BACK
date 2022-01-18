@@ -5,7 +5,11 @@ const axios = require("axios");
 
 async function getApiToDb(req, res, next) {
     try {
-        const foundArtworkDb = await Artwork.findAll();
+        const foundArtworkDb = await Artwork.findAll({
+            include: {
+                model: Type,
+            },
+        });
         console.log("length es____", foundArtworkDb.length);
         if (foundArtworkDb.length !== 0) {
             console.log("entramos a las obras de arte por data base")
@@ -63,20 +67,15 @@ async function getApiToDb(req, res, next) {
                     type: art.type,
                     creators_id: creators_id,
                     creators_description: creators,
-
                 }
             });
             results = results.filter(function (artwork) {
                 return artwork.images !== 'Not found image';
             }); //---> filter para obtener como base solamente las que contienen imágenes
 
-            // const dbArtworks = await Artwork.findAll({
-            //     include: {
-            //         model: Type,
-            //     },
-            // });
-            results.map((art) => {
-                Artwork.findOrCreate({
+
+            results.map(async (art) => {
+                var newArtwork = await Artwork.findOrCreate({
                     where: {
                         id: art.id,
                     },
@@ -92,10 +91,20 @@ async function getApiToDb(req, res, next) {
                         collection: art.collection,
                         creators_id: art.creators_id,
                         creators_description: art.creators_description,
-
-                        // type: art.type,
+                    },
+                    include: {
+                        model: Type,
                     },
                 });
+                let type_id = await Type.findOne({
+                    where: {
+                        type: art.type
+                    }
+                });
+                // console.log("type_id es ____", type_id.id);
+                // console.log("newArtwork is __", newArtwork);
+                await newArtwork[0].setTypes(type_id); // 
+
             });
             return res.json(results);
         }
@@ -159,6 +168,34 @@ async function postArtwork(req, res, next) {
 };
 
 
+async function getArtworkById(req, res, next) {
+    // console.log('entraaaaaaaaaaaaaaaa por id ID id _');
+    const { id } = req.params;
+    let artwork;
+    try {
+        // console.log('el id dentro del condicional es ', id);
+        artwork = await Artwork.findOne({
+            where: {
+                id,
+            },
+            include: {
+                model: Type,
+            },
+        });
+        // console.log('el artwork es ', artwork);
+        if (artwork) {
+            res.json(artwork);
+        } else {
+            res.status(404).json({
+                message: 'Not found',
+            });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 // --->>> json para testear el POST postman
 // {
 //   "title": "yoyoko loco",
@@ -180,6 +217,7 @@ module.exports = {
     getApiToDb,
     getByName,
     postArtwork,
+    getArtworkById,
 };
 
 // id
