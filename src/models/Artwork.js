@@ -36,6 +36,10 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         },
+        price: {
+            type: DataTypes.INTEGER,
+            // allowNull: false,
+        },
         // dimensions_height: {
         //     type: DataTypes.INTEGER,
         // },
@@ -56,25 +60,16 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // creators_id: {
-        //     type: DataTypes.INTEGER,
-        // },
-        // creators_description: {
-        //     type: DataTypes.STRING,
-        // },
+        creators_id: {
+            type: DataTypes.INTEGER,
+        },
+        creators_description: {
+            type: DataTypes.STRING,
+        },
         // creators_biography: {
         //     type: DataTypes.STRING,
         // },
-        // creators_birth_year: {
-        //     type: DataTypes.INTEGER,
-        // },
-        // creators_death_year: {
-        //     type: DataTypes.INTEGER,
-        // },
-        // pricing: {
-        //     type: DataTypes.INTEGER, //---> va por random entre 1000 a 1.000.000 dolares
-        //     allowNull: false,
-        // },
+        
 
     },
         {
@@ -82,33 +77,34 @@ module.exports = (sequelize) => {
         });
 };
 
+
 // id: art.id,
-//             title: art.title,
-//             creation_date: art.creation_date,
-//             current_location: art.current_location,
-//             culture: art.culture,
-//             technique: art.technique,
-//             collection: art.collection,
-//             // type
-//             dimensions: art.dimensions.unframed.height 
-//                         y art.dimensions.unframed.width, ---> paiting
-//                       or art.dimensions.sheet.height ---> Drawing y Manuscript
-//                         y art.dimensions.sheet.width,
-//                      or art.dimensions.pendant.height ---> Jewelry
-//                         y art.dimensions.pendant.width,
-//                     or art.dimensions.height.height ---> Ceramic
-//                     or art.dimensions.overall.height ---> Furniture and woodwork y Silver y Sculpture
-//                      y art.dimensions.overall.width,
-//                    or
-//             wall_description: art.wall_description,
-//             exhibitions_legacy: art.exhibitions.legacy,
-//             images: art.images.web.url,
-//             // exhibitions.legacy <<< --- esta es mucha info y está con tag tipo de un doc.html
-//             creators_id: art.creators.id,
-//             creators_description: art.creators.description,
-//             creators_biography: art.creators.biography,
-//             creators_birth_year: art.creators.birth_year,
-//             creators_death_year: art.creators.death_year,
+// title: art.title,
+// creation_date: art.creation_date,
+// current_location: art.current_location,
+// culture: art.culture,
+// technique: art.technique,
+// collection: art.collection,
+//     // type
+// dimensions: art.dimensions.unframed.height 
+//             y art.dimensions.unframed.width, ---> paiting
+//                or art.dimensions.sheet.height ---> Drawing y Manuscript
+//                y art.dimensions.sheet.width,
+//               or art.dimensions.pendant.height ---> Jewelry
+//                y art.dimensions.pendant.width,
+//                 or art.dimensions.height.height ---> Ceramic
+//               or art.dimensions.overall.height ---> Furniture and woodwork y Silver y Sculpture
+//                 y art.dimensions.overall.width,
+//                    or ...
+//  wall_description: art.wall_description,
+//  exhibitions_legacy: art.exhibitions.legacy,
+//  images: art.images.web.url,
+//  // exhibitions.legacy <<< --- esta es mucha info y está con tag tipo de un doc.html
+//  creators_id: art.creators.id,
+//  creators_description: art.creators.description,
+//  creators_biography: art.creators.biography,
+//  creators_birth_year: art.creators.birth_year,
+//  creators_death_year: art.creators.death_year,
 
 
 
