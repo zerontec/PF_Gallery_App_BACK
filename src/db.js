@@ -45,10 +45,11 @@ const {  Gallery, User, Artwork, Type, Shopping_cart, Role} = sequelize.models;
 // Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Type, {through: 'artwork_type'});
 Type.belongsToMany(Artwork, {through: 'artwork_type'});
-
+User.hasMany(Shopping_cart);
+Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
 User.belongsToMany(Role, {through: "user_Roles" });
 Role.belongsToMany(User, {through: "user_Roles" });
-/*  const ROLES= ["user", "admin", "moderator"];  */
+
 
 
 module.exports = {
