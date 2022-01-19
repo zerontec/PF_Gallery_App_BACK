@@ -4,9 +4,10 @@ const { getUsers, postUser, getUserById, getUserByName, putUser, deleteUser } = 
 
 
 router.get('/', getUsers);
-router.post('/', postUser);
+
 router.get('/:id', getUserById);
-router.get('/name/:name', getUserByName);
+router.post('/create', postUser)
+/* router.get('/search', getUserByName); */
 router.put('/:id', putUser);
 router.delete('/:id', deleteUser);
 
