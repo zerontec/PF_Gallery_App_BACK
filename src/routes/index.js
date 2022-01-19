@@ -40,17 +40,17 @@ const {
   adminBoard,
 } = require("../controllers/user.controller");
 
-router.get("/test/all", allAccess);
+router.get("/auth/all", allAccess);
 
-router.get("/test/user", [authJwt.verifyToken], userBoard);
+router.get("/auth/user", [authJwt.verifyToken], userBoard);
 
 router.get(
-  "/test/vend",
+  "/auth/vend",
   [authJwt.verifyToken, authJwt.isVendedor],
   vendedorBoard
 );
 
-router.get("/test/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
+router.get("/dashboard/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
 
 
 
@@ -62,7 +62,7 @@ router.get("/test/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
-router.use('/users', usersRoutes);
+router.use('/users',[authJwt.verifyToken, authJwt.isAdmin], usersRoutes);
 router.use('/gallery', galleryRoutes);
 router.get('/', (req, res) => {
     res.status(200).send(' > > > > ||| . . . GO TO /home please __ ||| > > >');
