@@ -105,13 +105,13 @@ async function getApiToDb(req, res, next) {
                 // console.log("newArtwork is __", newArtwork);
                 await newArtwork[0].setTypes(type_id); // 
 
-            });
+            }); 
             return res.json(results);
         }
     } catch (error) {
         return 'no esta entrando en el if de la db whi???? ' + error;
     }
-};
+}; 
 
 
 
@@ -194,7 +194,7 @@ async function getArtworkById(req, res, next) {
         next(error);
     }
 };
-
+ 
 
 // --->>> json para testear el POST postman
 // {

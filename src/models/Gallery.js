@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      own: {
+      owner: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -35,11 +35,11 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      num_cta_bancaria: {
+      bank_acc_num: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      images: {
+      image: {
         type: DataTypes.STRING,
       },
     },
