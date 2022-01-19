@@ -30,4 +30,6 @@ conn.sync({ force: true }).then(() => {
   });
   getTypes(); // <<<--- para iniciar la base de datos
   getApiToDb(); // <<<--- para iniciar la base de datos
-});
+});  
+
+// deployment
