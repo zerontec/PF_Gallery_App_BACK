@@ -47,7 +47,8 @@ function initial() {
 conn.sync({ force: true }).then(() => {
   server.listen(5040, () => {
     console.log('o|O_O|o robot Σωκράτης listening at 5040');
-    initial(); // eslint-disable-line no-console
+     // eslint-disable-line no-console
+     initial()
   });
   getTypes(); // <<<--- para iniciar la base de datos
   getApiToDb(); // <<<--- para iniciar la base de datos
