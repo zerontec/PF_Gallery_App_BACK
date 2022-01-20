@@ -8,11 +8,10 @@ const usersRoutes = require('./users');
 const shoppingCartRoutes = require('./shopping_cart');
 const galleryRoutes = require('./gallery');
 
-const { verifySignUp,authJwt} = require('../middleware');
 
 
 
-const galleryRoutes = require("./gallery");
+
 
 const { verifySignUp, authJwt } = require("../middleware");
 
