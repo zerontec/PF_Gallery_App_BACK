@@ -22,7 +22,8 @@ const { conn } = require('./src/db.js');
 const { getTypes } = require('./src/controllers/types_of_art');
 const { getApiToDb } = require('./src/controllers/artworks');
 
-const {Role }= require ('./src/db')
+const {Role }= require ('./src/db');
+
 
 
 function initial() {
@@ -44,11 +45,11 @@ function initial() {
 
 
 // Syncing all the models at once.
-conn.sync({ force: false}).then(() => {
+conn.sync({ force: true}).then(() => {
   server.listen(5040, () => {
     console.log('o|O_O|o robot Σωκράτης listening at 5040');
      // eslint-disable-line no-console
- 
+initial()
   });
   getTypes(); // <<<--- para iniciar la base de datos
   getApiToDb(); 
