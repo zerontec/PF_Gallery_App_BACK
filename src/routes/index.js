@@ -4,7 +4,11 @@ const { Router } = require('express');
 const artworkRoutes = require('./artworks');
 const typesRoutes = require('./types_of_art');
 const usersRoutes = require('./users');
+
+const galleryRoutes = require('./gallery');
+
 const { verifySignUp,authJwt} = require('../middleware');
+
 
 
 
@@ -59,6 +63,7 @@ router.get("/test/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
 router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
 router.use('/users', usersRoutes);
+router.use('/gallery', galleryRoutes);
 router.get('/', (req, res) => {
     res.status(200).send(' > > > > ||| . . . GO TO /home please __ ||| > > >');
 });
