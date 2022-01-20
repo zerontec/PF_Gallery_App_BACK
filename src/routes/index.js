@@ -4,6 +4,7 @@ const { Router } = require('express');
 const artworkRoutes = require('./artworks');
 const typesRoutes = require('./types_of_art');
 const usersRoutes = require('./users');
+const galleryRoutes = require('./gallery');
 const router = Router();
 
 // Configurar los routers
@@ -11,6 +12,7 @@ const router = Router();
 router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
 router.use('/users', usersRoutes);
+router.use('/gallery', galleryRoutes);
 router.get('/', (req, res) => {
     res.status(200).send(' > > > > ||| . . . GO TO /home please __ ||| > > >');
 });

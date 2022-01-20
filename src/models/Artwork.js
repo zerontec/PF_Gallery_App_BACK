@@ -66,6 +66,10 @@ module.exports = (sequelize) => {
         creators_description: {
             type: DataTypes.STRING,
         },
+        stock: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         // creators_biography: {
         //     type: DataTypes.STRING,
         // },

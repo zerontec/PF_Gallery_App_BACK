@@ -32,4 +32,4 @@ conn.sync({ force: true }).then(() => {
   getApiToDb(); // <<<--- para iniciar la base de datos
 });  
 
-// deployment
+// deployment heroku
