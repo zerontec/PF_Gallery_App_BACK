@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const {User, Role} = require ('../db');
 
-
+ 
 const verifyToken = (req, res, next) => {
     let token = req.headers["x-access-token"];
   
@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
       return res.status(403).send({
         message: "No se Recibio Token!"
       });
-    }
+    }  
   
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {

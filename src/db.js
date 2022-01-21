@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/galleryc`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/gallery`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -30,7 +30,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const {  Gallery, User, Artwork, Type, Shopping_cart, Role} = sequelize.models;
+const { User, Artwork, Type, Shopping_cart, Role} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -38,9 +38,9 @@ const {  Gallery, User, Artwork, Type, Shopping_cart, Role} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-// Gallery.hasMany(Artwork);
-// Gallery.hasMany(User);  
-// User.hasMany(Shopping_cart);
+
+User.hasMany(Shopping_cart, {as:"carrito_de_compras", foreignKey: 'user_id'});
+Shopping_cart.belongsTo(User, {as:"user"});
 // Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
 // Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Type, {through: 'artwork_type'});

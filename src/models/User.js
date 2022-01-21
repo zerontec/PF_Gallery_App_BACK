@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('user', {
     
-    
+     
     username: {
       type: DataTypes.STRING,
       allowNull: false,
