@@ -2,18 +2,19 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('shopping_cart', {
-        user_id: {
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
         },
-        artwork_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        artwork_title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // artwork_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        // },
+        // artwork_title: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING),
+        //     allowNull: false,
+        // },
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,

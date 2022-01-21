@@ -4,7 +4,7 @@ const { Router } = require('express');
 const artworkRoutes = require('./artworks');
 const typesRoutes = require('./types_of_art');
 const usersRoutes = require('./users');
-
+const shoppingCartRoutes = require('./shopping_cart');
 const galleryRoutes = require('./gallery');
 
 const { verifySignUp,authJwt} = require('../middleware');
@@ -64,6 +64,7 @@ router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
 router.use('/users', usersRoutes);
 router.use('/gallery', galleryRoutes);
+router.use('/shopping', shoppingCartRoutes)
 router.get('/', (req, res) => {
     res.status(200).send(' > > > > ||| . . . GO TO /home please __ ||| > > >');
 });
@@ -71,3 +72,12 @@ router.get('/', (req, res) => {
 
 
 module.exports = router;
+
+// to localhost:5040/auth/signup
+// {
+//   "name": "mauro",
+//   "username": "kuke",
+//   "email": "mauri@hotmail.com",
+//   "password": "1234Este5678",
+//   "roles": ["admin"]
+// }

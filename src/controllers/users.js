@@ -4,20 +4,30 @@ const axios = require("axios");
 
 async function getUsers(req, res, next) {
     try {
-        console.log('estamos en el getUsers');
+        const users = await User.findAll({
+            include: {
+                model: Shopping_cart,
+                as: "shopping_cart",
+                attributes: ["id", "user_id", "artwork_id", "quantity", "description", "price", "total"],
+            },
+            attributes: ["id", "username", "email", "role"],
+        });
+        res.status(200).json(users);
     } catch (error) {
-        next(error);
+        res.status(500).json({
+            message: "Error al obtener los usuarios",
+            error,
+        });
     }
-};
+}
 
 
-async function postUser(req, res, next) {
-    try {
-        console.log('estamos en el postUser');
-    } catch (error) {
-        next(error);
-    }
-};
+
+
+
+
+
+
 
 async function getUserById(req, res, next) {
     try {
@@ -55,7 +65,6 @@ async function deleteUser(req, res, next) {
 
 module.exports = {
     getUsers,
-    postUser,
     getUserById,
     getUserByName,
     putUser,

@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { getTypes } = require('./src/controllers/types_of_art');
 const { getApiToDb } = require('./src/controllers/artworks');
-// const { artworks } = require('./src/controllers/artworks.js');
+
 const {Role }= require ('./src/db')
 
 
@@ -50,7 +50,7 @@ conn.sync({ force: true }).then(() => {
     initial(); // eslint-disable-line no-console
   });
   getTypes(); // <<<--- para iniciar la base de datos
-  getApiToDb(); // <<<--- para iniciar la base de datos
+  getApiToDb(); 
 });  
 
 // deployment heroku
