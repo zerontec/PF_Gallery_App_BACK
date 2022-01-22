@@ -6,7 +6,8 @@ const { getUsers, getUserById, getUserByName, putUser, deleteUser } = require(".
 router.get('/', getUsers);
 
 router.get('/:id', getUserById);
-router.get('/name/:name', getUserByName);
+router.post('/create', postUser)
+/* router.get('/search', getUserByName); */
 router.put('/:id', putUser);
 router.delete('/:id', deleteUser);
 

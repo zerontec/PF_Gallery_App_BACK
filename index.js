@@ -44,10 +44,11 @@ function initial() {
 
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false}).then(() => {
   server.listen(5040, () => {
     console.log('o|O_O|o robot Σωκράτης listening at 5040');
-    initial(); // eslint-disable-line no-console
+     // eslint-disable-line no-console
+ 
   });
   getTypes(); // <<<--- para iniciar la base de datos
   getApiToDb(); 

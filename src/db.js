@@ -6,7 +6,9 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
+
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/gallery`, {
+
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -45,10 +47,11 @@ Shopping_cart.belongsTo(User, {as:"user"});
 // Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Type, {through: 'artwork_type'});
 Type.belongsToMany(Artwork, {through: 'artwork_type'});
-
+User.hasMany(Shopping_cart);
+Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
 User.belongsToMany(Role, {through: "user_Roles" });
 Role.belongsToMany(User, {through: "user_Roles" });
-/*  const ROLES= ["user", "admin", "moderator"];  */
+
 
 
 module.exports = {
