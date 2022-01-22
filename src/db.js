@@ -47,8 +47,10 @@ Shopping_cart.belongsTo(User, {as:"user"});
 // Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Type, {through: 'artwork_type'});
 Type.belongsToMany(Artwork, {through: 'artwork_type'});
+
 User.hasMany(Shopping_cart);
 Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
+
 User.belongsToMany(Role, {through: "user_Roles" });
 Role.belongsToMany(User, {through: "user_Roles" });
 

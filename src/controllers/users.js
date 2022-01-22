@@ -1,20 +1,15 @@
 const { User, Shopping_cart } = require("../db");
 var bcrypt = require("bcryptjs");
 
-
-
 async function getUsers(req, res, next) {
-
   try {
     let users = await User.findAll({
       include: {
         model: Shopping_cart,
-
-
+      
         attributes: [
           "id",
           "user_id",
-          "artwork_id",
           "quantity",
           "description",
           "price",
@@ -34,13 +29,6 @@ async function getUsers(req, res, next) {
 }
 
 
-async function postUser(req, res, next) {
-  try {
-  } catch (error) {
-    next(error);
-  }
-}
-
 
 async function getUserById(req, res, next) {
   try {
@@ -56,10 +44,10 @@ async function getUserById(req, res, next) {
     res.send({ message: "algo salio mal " });
   }
 }
-
+/* 
 async function postUser(req, res, next) {
   try {
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, roles } = req.body;
     const allUsers = await User.findAll();
     if (!name || !username || !email || !password) {
       return res.send({
@@ -70,7 +58,7 @@ async function postUser(req, res, next) {
         r.username.toLowerCase().includes(username.toLowerCase())
       );
       if (userName.length) {
-        return res.send(" email o username ya existe en la base de datos");
+        return res.send("  username ya existe en la base de datos");
       }
     }
 
@@ -78,6 +66,7 @@ async function postUser(req, res, next) {
       name,
       username,
       email,
+      roles,
       password: bcrypt.hashSync(req.body.password, 8),
     });
 
@@ -88,7 +77,7 @@ async function postUser(req, res, next) {
     console.log(error);
     res.send({ message: "algo salio mal " });
   }
-}
+} */
 
 async function putUser(req, res, next) {
   try {
@@ -123,14 +112,11 @@ async function deleteUser(req, res, next) {
 }
 
 module.exports = {
-
   getUsers,
-  postUser,
   getUserById,
-  /*  getUserByName, */
   putUser,
   deleteUser,
-
+ /*  postUser */
 };
 
 // users

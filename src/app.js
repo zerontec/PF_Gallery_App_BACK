@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const routes = require('./routes/index.js');
+const routes = require('./routes/index');
 // const cors = require('cors');
 
 
@@ -10,22 +10,6 @@ const routes = require('./routes/index.js');
 require('./db.js'); 
 
 const server = express();
-
-
-// // Filtrado selectivo de cors:
-// var whiteList = ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:8080'];
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whiteList.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-// server.use(cors(corsOptions)); // <<<--- cors(corsOptions) es para cerrar el uso de validación de cors
-
-
 
 server.name = 'API';
 
