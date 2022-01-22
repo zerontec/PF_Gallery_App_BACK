@@ -4,10 +4,12 @@ var bcrypt = require("bcryptjs");
 
 
 async function getUsers(req, res, next) {
+
   try {
     let users = await User.findAll({
       include: {
         model: Shopping_cart,
+
 
         attributes: [
           "id",
@@ -31,12 +33,14 @@ async function getUsers(req, res, next) {
   }
 }
 
+
 async function postUser(req, res, next) {
   try {
   } catch (error) {
     next(error);
   }
 }
+
 
 async function getUserById(req, res, next) {
   try {
@@ -119,12 +123,14 @@ async function deleteUser(req, res, next) {
 }
 
 module.exports = {
+
   getUsers,
   postUser,
   getUserById,
   /*  getUserByName, */
   putUser,
   deleteUser,
+
 };
 
 // users

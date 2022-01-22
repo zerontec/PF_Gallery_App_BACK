@@ -67,7 +67,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         stock: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
         },
         // creators_biography: {

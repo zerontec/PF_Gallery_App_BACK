@@ -9,7 +9,7 @@ const allAccess = (req, res) => {
   const adminBoard = (req, res) => {
     res.status(200).send("Admin Content.");
   };
-  
+   
   const vendedorBoard = (req, res) => {
     res.status(200).send("Vendedor Content.");
   };

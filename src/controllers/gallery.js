@@ -1,41 +1,54 @@
 const { Op } = require("sequelize");
-const { Gallery, User, Artwork } = require("../db");
-const { API_URL } = process.env;
+const { Gallery, User } = require("../db");
 const axios = require("axios");
 
 
 async function postGallery(req, res, next) {
-    const { name, id, address, owner, phone, email, website, description, bank_acc_num, logo } = req.body;
-
+    const { name, address, owner, phone, email, website, description, bank_acc_num, logo } = req.body;
+    const gallery = await Gallery.findOne({
+        where: {
+            name: name
+        }
+    })
     try {
-        const infoGallery = await Gallery.create({
-            name,
-            id,
-            address,
-            owner,
-            phone,
-            email,
-            website,
-            description,
-            bank_acc_num,
-            logo
-        })
-        await User.update({
-            gallery_id: infoGallery.id
-        }, {
-            where: {
-                id: req.user.id
-            }
-        })
-        res.status(200).json({
-            message: "Gallery created successfully",
-            gallery: infoGallery
-        })
-
+        if (gallery) {
+            res.status(400).json({
+                message: "Gallery already exists"
+            })
+        } else {
+            const infoGallery = await Gallery.create({
+                id: 1,
+                name,
+                address,
+                owner,
+                phone,
+                email,
+                website,
+                description,
+                bank_acc_num,
+                logo
+            })
+            res.status(200).json({
+                message: "Gallery created successfully",
+                gallery: infoGallery
+            })
+        }
     } catch (error) {
-        next(error);
+        return (error);
     }
 };
+
+// {
+// "name": "Museum of Modern Art",
+// "address": "1 E 53rd St, New York, NY 10022",
+// "owner": "Museum of Modern Art",
+// "phone": "212-929-9200",
+// "email": "museo@gmail.com",
+// "website": "https://www.moma.org/",
+// "description": "The Museum of Modern Art (MOMA) is ...",
+// "bank_acc_num": "123456789",
+// "logo": "logo.png"
+// }
 
 
 async function getGallery(req, res, next) {
@@ -63,11 +76,10 @@ async function getGallery(req, res, next) {
 
 async function putGallery(req, res, next) {
     try {
-        const { id } = req.params;
         const { name, address, owner, phone, email, website, description, bank_acc_num, logo } = req.body;
         const gallery = await Gallery.findOne({
             where: {
-                id
+                id: 1,
             }
         })
         if (!gallery) {
@@ -87,7 +99,7 @@ async function putGallery(req, res, next) {
                 logo
             }, {
                 where: {
-                    id
+                    id: 1
                 }
             })
             res.status(200).json({
