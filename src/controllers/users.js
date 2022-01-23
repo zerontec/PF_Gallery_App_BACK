@@ -1,18 +1,40 @@
-const { User, Shopping_cart } = require("../db");
+const { User, Shopping_cart, Artwork } = require("../db");
 
 const axios = require("axios");
 
 async function getUsers(req, res, next) {
     try {
+        console.log("entramos a getUsers");
         const users = await User.findAll({
-            include: {
-                model: Shopping_cart,
-                as: "shopping_cart",
-                attributes: [ "quantity", "description", "price", "total"],
-            },
-            attributes: ["id", "name", "username", "email", "password", "image"],
+            attributes: ["id", "name", "username", "email", "image"],
         });
-        res.status(200).json(users);
+        const userShopping = users.map(async (user) => {
+          var shoppingCart = await Shopping_cart.findAll({
+            where: {
+              userId: user.id,
+            },
+            include: [
+              {
+                model: Artwork,
+              },
+            ],
+            attributes: ["id", "quantity", "description", "price", "total"],
+          });
+          // console.log("shoppingCart", shoppingCart);
+            return {
+                id: user.id,
+                name: user.name,
+                username: user.username,
+                email: user.email,
+                image: user.image,
+                shoppingCart: shoppingCart
+            };
+        });
+        Promise.all(userShopping).then((data) => {
+            // console.log("data", data);
+            res.status(200).send({ data });
+        });
+         
     } catch (error) {
         res.status(500).json({
             message: "Error al obtener los usuarios",
