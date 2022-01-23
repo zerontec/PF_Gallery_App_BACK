@@ -99,3 +99,24 @@
 // type_id es ____ 13
 // type_id es ____ 14
 
+let user_Roles = {
+    dataValues: {
+      userId: 2,
+      roleId: 1
+    },
+    _previousDataValues: {
+      userId: 2,
+      roleId: 1
+    },
+    uniqno: 1,
+    isNewRecord: false
+  }
+
+  console.log("rol es", user_Roles.dataValues.roleId);
+    console.log("rolP es", user_Roles._previousDataValues.roleId);
+
+    user_Roles.dataValues.roleId = 3;
+    user_Roles._previousDataValues.roleId = 3;
+console.log("ahora pasamos a");
+    console.log("rol es", user_Roles.dataValues.roleId);
+    console.log("rolP es", user_Roles._previousDataValues.roleId);

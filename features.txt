@@ -1,0 +1,107 @@
+1_ Para que el admin origin pueda cambiar rol de user a admin
+debemos ir al putUsers e insertar el model user_roles
+trabajar con Leo
+
+2_ La de dejar comentarios en las obra de arte tambien falta
+posteos en las obras de arte
+table posteo de N a 1 con artwork 
+posteo va en deteil de artwork
+
+3_ Logeo con google
+trabajar Erik
+
+
+rol user_Roles {
+  dataValues: {
+    createdAt: 2022-01-23T16:23:10.771Z,
+    updatedAt: 2022-01-23T16:23:10.771Z,
+    userId: 2,
+    roleId: 1
+  },
+  _previousDataValues: {
+    createdAt: 2022-01-23T16:23:10.771Z,
+    updatedAt: 2022-01-23T16:23:10.771Z,
+    userId: 2,
+    roleId: 1
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    raw: true,
+    attributes: [ 'createdAt', 'updatedAt', 'userId', 'roleId' ]
+  },
+  isNewRecord: false
+}
+
+
+
+rol ahora es user_Roles {
+  dataValues: {
+    createdAt: 2022-01-23T16:23:10.771Z,
+    updatedAt: 2022-01-23T16:23:10.771Z,
+    userId: 2,
+    roleId: 1
+  },
+  _previousDataValues: {
+    createdAt: 2022-01-23T16:23:10.771Z,
+    updatedAt: 2022-01-23T16:23:10.771Z,
+    userId: 2,
+    roleId: 1
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    raw: true,
+    attributes: [ 'createdAt', 'updatedAt', 'userId', 'roleId' ]
+  },
+  isNewRecord: false
+}
+
+
+
+
+
+
+data user {
+  dataValues: {
+    id: 2,
+    username: 'toadmin',
+    name: 'mau',
+    email: 'mauritooo@hotmail.com',
+    password: '$2a$08$wIaztimijyCELh/CtxbleuwEYunj5t2G2Vx6kH30S016zeR8giQyK',
+    image: null,
+    createdAt: 2022-01-23T17:58:48.919Z,
+    updatedAt: 2022-01-23T17:58:48.919Z
+  },
+  _previousDataValues: {
+    id: 2,
+    username: 'toadmin',
+    name: 'mau',
+    email: 'mauritooo@hotmail.com',
+    password: '$2a$08$wIaztimijyCELh/CtxbleuwEYunj5t2G2Vx6kH30S016zeR8giQyK',
+    image: null,
+    createdAt: 2022-01-23T17:58:48.919Z,
+    updatedAt: 2022-01-23T17:58:48.919Z
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    raw: true,
+    attributes: [
+      'id',        'username',
+      'name',      'email',
+      'password',  'image',
+      'createdAt', 'updatedAt'
+    ]
+  },
+  isNewRecord: false
+}
