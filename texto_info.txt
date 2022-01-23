@@ -22,3 +22,79 @@ typos de obras ---> x relación ---> se levanta al levantar servidor
 numero de cuenta
 
 Carrito Compras ---> pendiente
+
+
+
+
+RUTAS PARA PRUEBAS
+
+RGISTR USUARIO  
+ POST a   localhost:5040/auth/signup
+
+Ejemplo en postman 
+{
+	/* "username": "Dania",
+	"email":"dania@gmail.com",
+	"name":"dania",
+	"password":"12345678",
+	"roles": ["user", "admin"]
+} */
+
+INICIO DE USUARIO 
+
+   Un POST a  //localhost:5040/auth/signin  
+    en el body ejemplo
+/*   {
+	"username":"Dania",
+	"password": "12345678"
+	
+} */
+// OBTENER TODOS LOS USURIOS 
+//  GET  http://localhost:5040/users/
+// antes estar registrado e iniciar sesion como administrador 
+// agregar el token que se genera al iniciar sesion en Header 
+//luego hacer el get 
+
+
+//OBETNER USUARIO POR ID 
+
+// GET localhost:5040/users/11   => 11 es el id del usuerio 
+//siempre registrado como admin y pasarr el token 
+
+
+	//CREAR USUARIO POR ADMIN
+  //POST 		http://localhost:5040/users/create	
+  
+  //en el Body ejemplo 
+ /*  {
+	
+		"name":"daniel",
+	"username": "daniel",
+	"email":"daniel@gmail.com",
+
+	"password":"12345678"
+
+} */
+
+// obtienes una respuata con el usuario creado verifiquen en get user 
+//pasen el token jejeje
+
+// ACTUALIZAR USUARIO 
+
+//PUT http://localhost:5040/users/12  //se tiene que pasar el id 
+//en el body
+//
+/* {
+           
+  "name": "Danielos",
+  "username": "danielos"
+  
+
+} */
+
+//debemos obtener una respuesta con la actualizacion verifiquen tambien en get user  
+
+//BORRAR USUARIO
+
+//DEL http://localhost:5040/users/3  se pasa un id tambien 
+//obtienes una respuesta 

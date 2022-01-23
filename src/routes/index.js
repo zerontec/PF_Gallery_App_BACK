@@ -8,21 +8,17 @@ const galleryRoutes = require('./gallery');
 
 const { verifySignUp,authJwt} = require('../middleware');
 
-
 const router = Router();
-
 
 const { signup, signin } = require("../controllers/auth.controller");
 
 router.post(
   "/auth/signup",
-  [verifySignUp.checkDuplicateUsernameOrEmail, 
-    verifySignUp.checkRolesExisted],
+  [verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted],
   signup
 );
 
 router.post("/auth/signin", signin);
-
 
 const {
   allAccess,
@@ -30,23 +26,27 @@ const {
   adminBoard,
 } = require("../controllers/user.controller");
 
-router.get("/test/all", allAccess);
+router.get("/auth/all", allAccess);
 
-router.get("/test/user", [authJwt.verifyToken], userBoard);
-
-router.get("/test/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
+router.get("/auth/user", [authJwt.verifyToken], userBoard);
 
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+router.get(
+  "/dashboard/admin",
+  [authJwt.verifyToken, authJwt.isAdmin],
+  adminBoard
+);
+
+router.use("/users", [authJwt.verifyToken, authJwt.isAdmin], usersRoutes);
+
 router.use('/home', artworkRoutes);
 router.use('/types', typesRoutes);
-router.use('/users', usersRoutes);
+
 router.use('/gallery', galleryRoutes);
 router.use('/shopping', shoppingCartRoutes)
 router.get('/', (req, res) => {
     res.status(200).send(' > > > > ||| . . . GO TO /home please __ ||| > > >');
-});
 
+});
 
 module.exports = router;
