@@ -38,6 +38,8 @@ const signup = (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+
 const signin = (req, res) => {
   User.findOne({
     where: {

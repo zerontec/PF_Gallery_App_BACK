@@ -1,4 +1,5 @@
-const { User, Shopping_cart, Artwork } = require("../db");
+const { User, Shopping_cart, Artwork, Role } = require("../db");
+const { Op } = require("sequelize");
 
 const axios = require("axios");
 
@@ -62,10 +63,21 @@ async function getUserById(req, res, next) {
 async function putUser(req, res, next) {
   try {
     let data = await User.findByPk(req.params.id);
+    console.log("data", data);
     data.update(req.body);
+
+    const toAdmin = await Role.findAll({
+      where: {
+        name: {
+          [Op.or]: req.body.roles,
+        },
+      },
+    });
+    console.log("toAdmin", toAdmin);
+    data.setRoles(toAdmin);
     res
       .status(202)
-      .send({ data, message: "Usuario Actualizado Exitosamente " });
+      .send({ data, message: "Usuario Actualizado como Admin Exitosamente" });
   } catch (error) {
     console.log(error);
   }

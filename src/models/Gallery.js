@@ -42,9 +42,6 @@ module.exports = (sequelize) => {
       logo: {
         type: DataTypes.STRING,
       },
-    },
-        {
-            timestamps: false
         });
 };
  
