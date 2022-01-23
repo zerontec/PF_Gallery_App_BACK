@@ -11,22 +11,6 @@ require('./db.js');
 
 const server = express();
 
-
-// // Filtrado selectivo de cors:
-// var whiteList = ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:8080'];
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whiteList.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-// server.use(cors(corsOptions)); // <<<--- cors(corsOptions) es para cerrar el uso de validación de cors
-
-
-
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -42,8 +26,6 @@ server.use((req, res, next) => {
   );
   next();
 }); 
-
-// server.use(cors()); // cors es un middleware para permitir peticiones de otros dominios
 
 server.use('/', routes);
 

@@ -7,14 +7,6 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true,
         },
-        // artwork_id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        // },
-        // artwork_title: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        //     allowNull: false,
-        // },
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,

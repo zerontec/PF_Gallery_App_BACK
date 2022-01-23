@@ -1,6 +1,5 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+
 const artworkRoutes = require('./artworks');
 const typesRoutes = require('./types_of_art');
 const usersRoutes = require('./users');
@@ -10,14 +9,7 @@ const galleryRoutes = require('./gallery');
 const { verifySignUp,authJwt} = require('../middleware');
 
 
-
-
 const router = Router();
-
-
-
-
-
 
 
 const { signup, signin } = require("../controllers/auth.controller");
@@ -32,11 +24,9 @@ router.post(
 router.post("/auth/signin", signin);
 
 
-
 const {
   allAccess,
   userBoard,
-  vendedorBoard,
   adminBoard,
 } = require("../controllers/user.controller");
 
@@ -44,18 +34,7 @@ router.get("/test/all", allAccess);
 
 router.get("/test/user", [authJwt.verifyToken], userBoard);
 
-router.get(
-  "/test/vend",
-  [authJwt.verifyToken, authJwt.isVendedor],
-  vendedorBoard
-);
-
 router.get("/test/admin", [authJwt.verifyToken, authJwt.isAdmin], adminBoard);
-
-
-
-
-/////////////////////////////////////////////
 
 
 // Configurar los routers
@@ -70,14 +49,4 @@ router.get('/', (req, res) => {
 });
 
 
-
 module.exports = router;
-
-// to localhost:5040/auth/signup
-// {
-//   "name": "mauro",
-//   "username": "kuke",
-//   "email": "mauri@hotmail.com",
-//   "password": "1234Este5678",
-//   "roles": ["admin"]
-// }
