@@ -1,5 +1,5 @@
 const { Shopping_cart, Artwork, User } = require("../db");
- 
+
 async function postShoppingCart(req, res) {
     try {
         const { id, userId, quantity, description, price, total, artwork_id } = req.body;
@@ -9,10 +9,25 @@ async function postShoppingCart(req, res) {
             quantity,
             description,
             price,
-            total, 
+            total,
         });
         // put a obra de arte stock to false
-        await shoppingCart.addArtworks(artwork_id);
+        // artwork_id = [] map --> add artwork_id
+        artwork_id.map(async (art) => {
+            await shoppingCart.addArtworks(art);
+            const artSold = await Artwork.findOne({
+                where: {
+                    id: art,
+                }
+            })
+            if (artSold) {
+                artSold.update({
+                    stock: false
+                })
+            }
+        })
+
+
         res.status(201).json(shoppingCart);
     } catch (error) {
         res.status(500).json({
