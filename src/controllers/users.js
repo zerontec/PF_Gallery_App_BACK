@@ -1,33 +1,25 @@
 const { User, Shopping_cart } = require("../db");
-var bcrypt = require("bcryptjs");
+
+const axios = require("axios");
 
 async function getUsers(req, res, next) {
-  try {
-    let users = await User.findAll({
-      include: {
-        model: Shopping_cart,
-      
-        attributes: [
-          "id",
-          "user_id",
-          "quantity",
-          "description",
-          "price",
-          "total",
-        ],
-      },
-      attributes: ["id", "username", "email"],
-    });
-    /*   return (data && data.length > 0 ? res.send({status: true, data}): res.send({status:false, message:"No se encontro data"})) */
-    return users && users.length > 0
-      ? res.status(200).send({ users })
-      : res.status(400).send({ message: "No se encontro usuarios" });
-  } catch (error) {
-    console.log(error);
-    res.send({ message: "algo salio mal " });
-  }
+    try {
+        const users = await User.findAll({
+            include: {
+                model: Shopping_cart,
+                as: "shopping_cart",
+                attributes: [ "quantity", "description", "price", "total"],
+            },
+            attributes: ["id", "name", "username", "email", "password", "image"],
+        });
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al obtener los usuarios",
+            error,
+        });
+    }
 }
-
 
 
 async function getUserById(req, res, next) {
@@ -44,40 +36,6 @@ async function getUserById(req, res, next) {
     res.send({ message: "algo salio mal " });
   }
 }
-/* 
-async function postUser(req, res, next) {
-  try {
-    const { name, username, email, password, roles } = req.body;
-    const allUsers = await User.findAll();
-    if (!name || !username || !email || !password) {
-      return res.send({
-        message: "Los campos name username email y password son obligatorios",
-      });
-    } else if (username) {
-      let userName = await allUsers.filter((r) =>
-        r.username.toLowerCase().includes(username.toLowerCase())
-      );
-      if (userName.length) {
-        return res.send("  username ya existe en la base de datos");
-      }
-    }
-
-    let newUser = await User.create({
-      name,
-      username,
-      email,
-      roles,
-      password: bcrypt.hashSync(req.body.password, 8),
-    });
-
-    return newUser
-      ? res.status(200).send({ newUser, message: "usario creado con exito " })
-      : res.status(400).send({ message: "no se pudo crear :( " });
-  } catch (error) {
-    console.log(error);
-    res.send({ message: "algo salio mal " });
-  }
-} */
 
 async function putUser(req, res, next) {
   try {
@@ -116,13 +74,6 @@ module.exports = {
   getUserById,
   putUser,
   deleteUser,
- /*  postUser */
 };
 
-// users
-// POST
-// GET
-// PULL
-// DELETE
-// un usuario un carrito
-// muchos carritos muchas obras de arte
+

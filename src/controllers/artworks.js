@@ -25,20 +25,10 @@ async function getApiToDb(req, res, next) {
                 229000, 229500, 230000, 230500, 231000, 231500, 232000, 232500, 233000, 233500, 234000, 234500, 235000, 235500, 236000, 236500, 237000, 237500, 238000, 238500, 239000, 239500, 240000, 240500, 241000, 241500, 242000, 242500, 243000, 243500, 244000, 244500, 245000, 245500, 246000, 246500, 247000, 247500, 248000, 248500, 249000, 249500, 250000, 250500, 251000, 251500, 252000, 252500, 253000, 253500, 254000, 254500, 255000, 255500, 256000, 256500, 257000, 257500, 258000, 258500, 259000, 259500, 260000, 260500, 261000, 261500, 262000, 262500, 263000, 263500, 264000, 264500, 265000, 265500, 266000, 266500, 267000, 267500, 268000, 268500, 269000, 269500, 270000, 270500, 271000, 271500, 272000, 272500, 273000, 273500, 274000, 274500, 275000, 275500, 276000, 276500, 277000, 277500, 278000, 278500, 279000, 279500, 280000, 280500, 281000, 281500, 282000, 282500, 283000, 283500, 284000, 284500, 285000, 285500, 286000, 286500, 287000, 287500, 288000, 288500, 289000, 289500, 290000, 290500, 291000, 291500, 292000, 292500, 293000, 293500, 294000, 294500, 295000, 295500, 296000, 296500, 297000, 297500, 298000, 298500, 299000, 299500, 300000, 300500,
                 301000, 301500, 302000, 302500, 303000, 303500, 304000, 304500, 305000, 305500, 306000, 306500, 307000, 307500, 308000, 308500, 309000, 309500, 310000, 310500, 311000, 400000, 450000, 500000, 550000, 600000, 650000, 750000, 800000, 850000, 950000, 1000000, 1100000, 1150000]
         
-            // let stock = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            //     21, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11,
-            // 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
-            // 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 70, 75, 80, 84, 86, 88, 92, 95, 97, 99, 100, 102, 104, 107];
-            
-
-            //var count = 1;
 
             var results = apiArtwork.data.slice(6, 124).map((art) => {
 
                 let randomPrice = allPrices[Math.floor(Math.random() * allPrices.length)];
-                // console.log("randomPrice es ___ ", randomPrice);
-
-                // let randomStock = stock[Math.floor(Math.random() * stock.length)];
 
                 if (art.images !== null) {
                     var image = art.images.web.url;
@@ -54,12 +44,9 @@ async function getApiToDb(req, res, next) {
                     str = str.substring(0, 508) + '...'; // limita la cantidad de texto en la description
                 }
 
-                //console.log("str es ____",str)
                 var creators = art.creators.length === 0 ? "anonymous" : art.creators[0].description;
                 var creators_id = art.creators.length === 0 ? 5040 : art.creators[0].id;
 
-                //console.log("creador es ____", count++ + " " + creators );
-                //console.log("creador id es ____", creators_id)
                 return {
                     id: art.id,
                     title: art.title,
@@ -80,7 +67,6 @@ async function getApiToDb(req, res, next) {
             results = results.filter(function (artwork) {
                 return artwork.images !== 'Not found image';
             }); //---> filter para obtener como base solamente las que contienen imágenes
-
 
             results.map(async (art) => {
                 var newArtwork = await Artwork.findOrCreate({
@@ -110,8 +96,7 @@ async function getApiToDb(req, res, next) {
                         type: art.type
                     }
                 });
-                // console.log("type_id es ____", type_id.id);
-                // console.log("newArtwork is __", newArtwork);
+ 
                 await newArtwork[0].setTypes(type_id); // 
  
             }); 
@@ -123,16 +108,10 @@ async function getApiToDb(req, res, next) {
 }; 
 
 
-
-
-
 async function getByName(req, res, next) {
     const { name } = req.query;
-    // petición postman para solicitar por name es: localhost:5040/home?name=Monet
     try {
         if (name) {
-            // console.log('in search x name');
-            // console.log("name is ___ ", name);
             const dbArtworks = await Artwork.findAll({
                 where: {
                     title: {
@@ -153,8 +132,6 @@ async function getByName(req, res, next) {
 
 async function postArtwork(req, res, next) {
     const { title, images, price, description, creation_date, current_location, culture, technique, collection, creators_description, creators_id, type } = req.body;
-    // console.log('req es ___ ', req.query);
-    // console.log('title es ___ ', title);
     try {
         const newArtwork = await Artwork.create({
             title,
@@ -168,10 +145,9 @@ async function postArtwork(req, res, next) {
             collection,
             creators_description,
             creators_id,
-            stock
+            stock: true
         });
         await newArtwork.addTypes(type);
-        // await newArtwork.addShopping_carts(creators_id);
         res.json(newArtwork);
     } catch (error) {
         next(error);
@@ -180,11 +156,9 @@ async function postArtwork(req, res, next) {
 
 
 async function getArtworkById(req, res, next) {
-    // console.log('entraaaaaaaaaaaaaaaa por id ID id _');
     const { id } = req.params;
     let artwork;
     try {
-        // console.log('el id dentro del condicional es ', id);
         artwork = await Artwork.findOne({
             where: {
                 id,
@@ -193,7 +167,6 @@ async function getArtworkById(req, res, next) {
                 model: Type,
             },
         });
-        // console.log('el artwork es ', artwork);
         if (artwork) {
             res.json(artwork);
         } else {
@@ -206,50 +179,9 @@ async function getArtworkById(req, res, next) {
     }
 };
  
-
-// --->>> json para testear el POST postman
-// {
-//   "title": "yoyoko loco",
-//   "images": "hhtp.cualquiera",
-//   "price": 30,
-//   "description": "casa",
-//   "creation_date": "5",
-//   "current_location": "coooooooo",
-//   "culture": ["piuuuu"],
-//   "technique": "berr",
-//   "collection": "as",
-//   "creators_description": "kol",
-//   "creators_id": 1,
-//   "type": [2]
-// }
-
-
 module.exports = {
     getApiToDb,
     getByName,
     postArtwork,
     getArtworkById,
 };
-
-// id
-// title
-// creation_date
-// current_location
-// culture
-// technique
-// collection
-// type
-// dimensions.unframed
-// wall_description
-// images.web.url
-
-// exhibitions.legacy <<<--- esta es mucha info y está con tag tipo de un doc. html
-
-// creators.id
-// creators.description
-// creators.biography
-// creators.birth_year
-// creators.death_year
-
-
-

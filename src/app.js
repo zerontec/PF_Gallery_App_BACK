@@ -27,8 +27,6 @@ server.use((req, res, next) => {
   next();
 }); 
 
-// server.use(cors()); // cors es un middleware para permitir peticiones de otros dominios
-
 server.use('/', routes);
 
 // Error catching endware.

@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-const { postShoppingCart, getShoppingCart } = require("../controllers/shopping_carts");
+const { postShoppingCart, getShoppingCart, getShoppingCartById } = require("../controllers/shopping_carts");
 
 
 router.post('/', postShoppingCart);
-router.get('/:id', getShoppingCart);
+router.get('/', getShoppingCart);
+router.get('/:id', getShoppingCartById);
 
 
 

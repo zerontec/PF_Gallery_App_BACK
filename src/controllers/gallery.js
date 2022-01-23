@@ -1,7 +1,4 @@
-const { Op } = require("sequelize");
-const { Gallery, User } = require("../db");
-const axios = require("axios");
-
+const { Gallery } = require("../db");
 
 async function postGallery(req, res, next) {
     const { name, address, owner, phone, email, website, description, bank_acc_num, logo } = req.body;
@@ -37,18 +34,6 @@ async function postGallery(req, res, next) {
         return (error);
     }
 };
-
-// {
-// "name": "Museum of Modern Art",
-// "address": "1 E 53rd St, New York, NY 10022",
-// "owner": "Museum of Modern Art",
-// "phone": "212-929-9200",
-// "email": "museo@gmail.com",
-// "website": "https://www.moma.org/",
-// "description": "The Museum of Modern Art (MOMA) is ...",
-// "bank_acc_num": "123456789",
-// "logo": "logo.png"
-// }
 
 
 async function getGallery(req, res, next) {
@@ -111,7 +96,6 @@ async function putGallery(req, res, next) {
         next(error);
     }
 };
-
 
 
 module.exports = {

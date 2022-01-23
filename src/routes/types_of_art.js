@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-//const {Type_of_Art} = require("../db");
 const {getTypes} = require("../controllers/types_of_art");
-
 
 
 router.get('/', async (req, res, next) => {

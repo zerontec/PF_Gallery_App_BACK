@@ -38,24 +38,8 @@ module.exports = (sequelize) => {
         },
         price: {
             type: DataTypes.INTEGER,
-            // allowNull: false,
+            allowNull: false,
         },
-        // dimensions_height: {
-        //     type: DataTypes.INTEGER,
-        // },
-        // dimensions_width: {
-        //     type: DataTypes.INTEGER,
-        // },
-        // digital_description: {
-        //     type: DataTypes.STRING,
-        // },
-        // wall_description: {
-        //     type: DataTypes.STRING,
-        // },
-        // exhibitions_legacy: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        //     allowNull: false,
-        // },
         images: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -70,47 +54,10 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        // creators_biography: {
-        //     type: DataTypes.STRING,
-        // },
-        
-
     },
         {
             timestamps: false
         });
 };
-
-
-// id: art.id,
-// title: art.title,
-// creation_date: art.creation_date,
-// current_location: art.current_location,
-// culture: art.culture,
-// technique: art.technique,
-// collection: art.collection,
-//     // type
-// dimensions: art.dimensions.unframed.height 
-//             y art.dimensions.unframed.width, ---> paiting
-//                or art.dimensions.sheet.height ---> Drawing y Manuscript
-//                y art.dimensions.sheet.width,
-//               or art.dimensions.pendant.height ---> Jewelry
-//                y art.dimensions.pendant.width,
-//                 or art.dimensions.height.height ---> Ceramic
-//               or art.dimensions.overall.height ---> Furniture and woodwork y Silver y Sculpture
-//                 y art.dimensions.overall.width,
-//                    or ...
-//  wall_description: art.wall_description,
-//  exhibitions_legacy: art.exhibitions.legacy,
-//  images: art.images.web.url,
-//  // exhibitions.legacy <<< --- esta es mucha info y está con tag tipo de un doc.html
-//  creators_id: art.creators.id,
-//  creators_description: art.creators.description,
-//  creators_biography: art.creators.biography,
-//  creators_birth_year: art.creators.birth_year,
-//  creators_death_year: art.creators.death_year,
-
-
-
 
 // set client_encoding to UTF8;

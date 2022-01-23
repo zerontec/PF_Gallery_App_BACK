@@ -7,5 +7,4 @@ router.post('/', postGallery);
 router.get('/:id', getGallery);
 router.put('/:id', putGallery);
 
-
 module.exports = router;

@@ -34,45 +34,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { User, Artwork, Type, Shopping_cart, Role} = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
-User.hasMany(Shopping_cart, {as:"carrito_de_compras", foreignKey: 'user_id'});
+//User.hasMany(Shopping_cart, {as:"shopping_cart", foreignKey: 'user_id'});
 Shopping_cart.belongsTo(User, {as:"user"});
-// Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
-// Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
-Artwork.belongsToMany(Type, {through: 'artwork_type'});
-Type.belongsToMany(Artwork, {through: 'artwork_type'});
 
-User.hasMany(Shopping_cart);
-Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
-
-User.belongsToMany(Role, {through: "user_Roles" });
-Role.belongsToMany(User, {through: "user_Roles" });
-
-
-
-module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-};
-
-
-
-
-
-/* 
-const { Gallery, User, Artwork, Type, Shopping_cart, Role } = sequelize.models;
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-Gallery.hasMany(Artwork);
-Gallery.hasMany(User); 
-User.hasMany(Shopping_cart);
 Shopping_cart.belongsToMany(Artwork, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Shopping_cart, { through: 'Shopping_cart_artwork' });
 Artwork.belongsToMany(Type, {through: 'artwork_type'});
@@ -80,4 +45,8 @@ Type.belongsToMany(Artwork, {through: 'artwork_type'});
 
 User.belongsToMany(Role, {through: "user_Roles" });
 Role.belongsToMany(User, {through: "user_Roles" });
- */
+
+module.exports = {
+  ...sequelize.models, 
+  conn: sequelize,     
+};
