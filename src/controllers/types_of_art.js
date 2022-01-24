@@ -12,7 +12,7 @@ async function getTypes(req, res, next) {
             let apiTypes = await axios.get(API_URL);
             var types = [];
             apiTypes = apiTypes.data;
-            for (let i = 0; i < apiTypes.data.slice(6, 124).length; i++) {
+            for (let i = 0; i < apiTypes.data.length; i++) {
                 let info = apiTypes.data[i].type;
                 if (info) {
                     types = types.concat(info.split(","));

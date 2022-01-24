@@ -10,7 +10,7 @@ const { verifySignUp,authJwt} = require('../middleware');
 
 const router = Router();
 
-const { signup, signin } = require("../controllers/auth.controller");
+const { signup, signin, googleSignUp } = require("../controllers/auth.controller");
 
 router.post(
   "/auth/signup",
@@ -18,7 +18,10 @@ router.post(
   signup
 );
 
+router.post("/auth/signup/google", googleSignUp);
+
 router.post("/auth/signin", signin);
+
 
 const {
   allAccess,

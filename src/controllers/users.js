@@ -82,7 +82,7 @@ async function putUser(req, res, next) {
     console.log(error);
   }
 }
-
+// https-browserify    browserify-zlib    stream-http   stream-browserify  assert
 async function deleteUser(req, res, next) {
   try {
     let { id } = req.body;
@@ -90,7 +90,7 @@ async function deleteUser(req, res, next) {
       const data = await User.findOne({
         where: { id },
       });
-      if (data) {
+      if (data) { 
         await data.destroy();
         res.status(200).send({ message: "usuario borrado satisfactoriamente" });
       } else {
