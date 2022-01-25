@@ -27,7 +27,6 @@ const {Role }= require ('./src/db');
 const port = process.env.PORT || 5040;
 
 
-
 function initial() {
   Role.create({
     id: 1,
