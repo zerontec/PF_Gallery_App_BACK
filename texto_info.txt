@@ -98,3 +98,17 @@ INICIO DE USUARIO
 
 //DEL http://localhost:5040/users/3  se pasa un id tambien 
 //obtienes una respuesta 
+
+
+
+ git push heroku dev:master
+ "scripts": {
+    "start": "nodemon -L",
+    "run": "nodemon -L",
+    "test": "mocha -w ./tests/**/*.spec.js"
+  },
+
+  Si desea enviar una rama que no es la rama maestra a heroku
+
+git push origin development_branch
+git push heroku development_branch:master
